@@ -17,15 +17,49 @@ data:
         readonly: false
         headers:
           X-Auth-Test: karma
+    annotations:
+      default:
+        hidden: true
+      hidden: []
+      visible: []
+    filters:
+      default:
+        - "@state=active"
+        - team=firecracker
+        - alertname!~Inhibition
+        - alertname!~Heartbeat
+    grid:
+      sorting:
+        order: label
+        reverse: false
+        label: severity
+        customValues:
+          labels: {}
     karma:
-      name: karma-prod
+      name: KarmaGauss
     labels:
       color:
         static:
-          - job
+          - cluster_id
+          - alert_name
+        custom:
+          severity:
+          - value: heartbeat
+            color: "#87c4e0"
+          - value: notify
+            color: "#ffae42"
+          - value: page
+            color: "#ff220c"
         unique:
-          - cluster
-          - instance
+          - installation
+          - team
+          - customer
+          - provider
+          - pipeline
+          - area
+          - topic
+          - cluster_type
+          - namespace
           - "@receiver"
       keep: []
       strip: []
@@ -41,6 +75,6 @@ data:
       hideFiltersWhenIdle: true
       colorTitlebar: false
       minimalGroupWidth: 420
-      alertsPerGroup: 5
-      collapseGroups: collapsedOnMobile
-
+      alertsPerGroup: 1
+      collapseGroups: collapsed
+      multiGridLabel: "severity"
