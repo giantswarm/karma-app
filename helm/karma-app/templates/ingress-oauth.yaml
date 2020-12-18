@@ -18,7 +18,7 @@ spec:
         path: /oauth2
         pathType: ImplementationSpecific
   tls:
-  - hosts:
-      - alertmanager-dashboard.giantswarm.io
-      - alertmanager-dashboard.{{ .Values.baseDomain }}
-    secretName: karma-tls
+    - hosts:
+        - alertmanager-dashboard.giantswarm.io
+        - alertmanager-dashboard.{{ .Values.baseDomain }}
+      secretName: karma-tls
