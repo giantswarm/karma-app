@@ -1,0 +1,152 @@
+name: karma
+namespace: monitoring
+serviceType: managed
+
+
+clusterID: rfjh2
+baseDomain: gorilla.eu-central-1.aws.gigantic.io
+
+project:
+  branch: "[[ .Branch ]]"
+  commit: "[[ .SHA ]]"
+
+image:
+  registry: quay.io
+  name: giantswarm/karma
+  tag: v0.77
+  pullPolicy: IfNotPresent
+
+oauth2:
+  serviceName: oauth2-proxy
+  port: 4180
+
+replicaCount: 1
+
+port: 8080
+
+service:
+  type: ClusterIP
+  port: 80
+  annotations: {}
+    # prometheus.io/scrape: "true"
+  labels: {}
+
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  create: true
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+deployment:
+  annotations: {}
+
+resources:
+  limits:
+   cpu: 200m
+   memory: 250Mi
+  requests:
+   cpu: 200m
+   memory: 250Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Labels to be added to pod
+podLabels: {}
+
+# Annotations to be added to pod
+podAnnotations: {}
+
+securityContext: {}
+
+# configuration for liveness probe
+livenessProbe:
+  delay: 5
+  period: 5
+  path: /health
+
+# configMap dictates if a configmap based configuration for Karma should be used
+# to provide advanced configuration. NOTE, you must use port 8080!
+configMap:
+  rawConfig:
+    alertmanager:
+      interval: 120s
+      servers:
+    annotations:
+      default:
+        hidden: true
+      hidden: []
+      visible: []
+    filters:
+      default:
+        - "@state=active"
+        - team=firecracker
+        - alertname!~Inhibition
+        - alertname!~Heartbeat
+    grid:
+      sorting:
+        order: label
+        reverse: false
+        label: team
+        customValues:
+          labels: {}
+    karma:
+      name: Alertmanager Dashboard
+    labels:
+      color:
+        static:
+          - cluster_id
+          - alert_name
+        custom:
+          severity:
+          - value: heartbeat
+            color: "#87c4e0"
+          - value: notify
+            color: "#ffae42"
+          - value: page
+            color: "#ff220c"
+        unique:
+          - installation
+          - team
+          - customer
+          - provider
+          - pipeline
+          - area
+          - topic
+          - cluster_type
+          - namespace
+          - "@receiver"
+      keep: []
+      strip: []
+    listen:
+      address: "0.0.0.0"
+      port: 8080
+      prefix: /
+    log:
+      config: false
+      level: info
+    ui:
+      refresh: 30s
+      hideFiltersWhenIdle: true
+      colorTitlebar: false
+      minimalGroupWidth: 420
+      alertsPerGroup: 1
+      collapseGroups: collapsed
+      multiGridLabel: "severity"

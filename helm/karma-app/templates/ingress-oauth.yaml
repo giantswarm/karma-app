@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "resource.default.name" . }}-proxy
+  namespace: {{ include "resource.default.namespace" . }}
+  labels:
+    {{- include "labels.common" . | nindent 4 }}
+  annotations:
+    kubernetes.io/tls-acme: "true"
+spec:
+  rules:
+  - host: alertmanager-dashboard.{{ .Values.clusterID }}.g8s.{{ .Values.baseDomain }}
+    http:
+      paths:
+      - backend:
+          serviceName: {{ .Values.oauth2.serviceName }}
+          servicePort: {{ .Values.oauth2.port }}
+        path: /oauth2
+        pathType: ImplementationSpecific
