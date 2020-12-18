@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: karma-oauth2-proxy
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: karma
+spec:
+  tls:
+    - hosts:
+      - karma.g8s.gauss.eu-west-1.aws.gigantic.io
+      secretName: monitoring-karma
+  rules:
+  - host: karma.g8s.gauss.eu-west-1.aws.gigantic.io
+    http:
+      paths:
+      - backend:
+          serviceName: oauth2-proxy
+          servicePort: 4180
+        path: /oauth2
+        pathType: ImplementationSpecific

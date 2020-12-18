@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: karma
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: karma
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/auth-signin: https://$host/oauth2/start?rd=$escaped_request_uri
+    nginx.ingress.kubernetes.io/auth-url: https://$host/oauth2/auth
+    nginx.ingress.kubernetes.io/whitelist-source-range: 185.102.95.187/32,95.179.153.65/32
+spec:
+  tls:
+    - hosts:
+      - karma.g8s.gauss.eu-west-1.aws.gigantic.io
+      secretName: monitoring-karma
+  rules:
+  - host: karma.g8s.gauss.eu-west-1.aws.gigantic.io
+    http:
+      paths:
+      - backend:
+          serviceName: karma
+          servicePort: 80
+        path: /
+        pathType: ImplementationSpecific
