@@ -56,11 +56,11 @@ deployment:
 
 resources:
   limits:
-   cpu: 200m
-   memory: 250Mi
+    cpu: 200m
+    memory: 250Mi
   requests:
-   cpu: 200m
-   memory: 250Mi
+    cpu: 200m
+    memory: 250Mi
 
 nodeSelector: {}
 
