@@ -24,5 +24,7 @@ spec:
           servicePort: {{ .Values.service.port }}
         path: /
   tls:
-  - host: alertmanager-dashboard.{{ .Values.baseDomain }}
-    secretName: karma-tls
+    - hosts:
+        - alertmanager-dashboard.giantswarm.io
+        - alertmanager-dashboard.{{ .Values.baseDomain }}
+      secretName: karma-tls
