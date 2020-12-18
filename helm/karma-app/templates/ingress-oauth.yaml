@@ -9,7 +9,7 @@ metadata:
     kubernetes.io/tls-acme: "true"
 spec:
   rules:
-  - host: alertmanager-dashboard.{{ .Values.clusterID }}.g8s.{{ .Values.baseDomain }}
+  - host: alertmanager-dashboard.{{ .Values.baseDomain }}
     http:
       paths:
       - backend:
@@ -17,3 +17,6 @@ spec:
           servicePort: {{ .Values.oauth2.port }}
         path: /oauth2
         pathType: ImplementationSpecific
+  tls:
+  - host: alertmanager-dashboard.{{ .Values.baseDomain }}
+    secretName: karma-tls

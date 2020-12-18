@@ -16,10 +16,13 @@ metadata:
     {{- include "labels.common" . | nindent 4 }}
 spec:
   rules:
-  - host: alertmanager-dashboard.{{ .Values.clusterID }}.g8s.{{ .Values.baseDomain }}
+  - host: alertmanager-dashboard.{{ .Values.baseDomain }}
     http:
       paths:
       - backend:
           serviceName: {{ include "resource.default.name" . }}
           servicePort: {{ .Values.service.port }}
         path: /
+  tls:
+  - host: alertmanager-dashboard.{{ .Values.baseDomain }}
+    secretName: karma-tls

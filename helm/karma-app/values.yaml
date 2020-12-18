@@ -2,9 +2,7 @@ name: karma
 namespace: monitoring
 serviceType: managed
 
-
-clusterID: rfjh2
-baseDomain: gorilla.eu-central-1.aws.gigantic.io
+baseDomain: rfjh2.gorilla.eu-central-1.aws.gigantic.io
 
 project:
   branch: "[[ .Branch ]]"
