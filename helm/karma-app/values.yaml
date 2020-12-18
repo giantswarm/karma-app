@@ -4,7 +4,7 @@ serviceType: managed
 
 
 clusterID: rfjh2
-baseDomain: gorilla.eu-west-1.aws.gigantic.io
+baseDomain: gorilla.eu-central-1.aws.gigantic.io
 
 project:
   branch: "[[ .Branch ]]"
