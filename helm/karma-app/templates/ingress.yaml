@@ -16,7 +16,7 @@ metadata:
     {{- include "labels.common" . | nindent 4 }}
 spec:
   rules:
-  - host: alertmanager-dashboard.g8s.{{ .Values.baseDomain }}
+  - host: alertmanager-dashboard.{{ .Values.clusterID }}.g8s.{{ .Values.baseDomain }}
     http:
       paths:
       - backend:

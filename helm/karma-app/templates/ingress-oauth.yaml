@@ -5,13 +5,11 @@ metadata:
   namespace: {{ include "resource.default.namespace" . }}
   labels:
     {{- include "labels.common" . | nindent 4 }}
+  annotations:
+    kubernetes.io/tls-acme: "true"
 spec:
-  tls:
-    - hosts:
-      - alertmanager-dashboard.g8s.{{ .Values.baseDomain }}
-      secretName: monitoring-karma
   rules:
-  - host: alertmanager-dashboard.g8s.{{ .Values.baseDomain }}
+  - host: alertmanager-dashboard.{{ .Values.clusterID }}.g8s.{{ .Values.baseDomain }}
     http:
       paths:
       - backend:

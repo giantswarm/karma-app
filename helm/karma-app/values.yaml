@@ -3,7 +3,8 @@ namespace: monitoring
 serviceType: managed
 
 
-baseDomain: gauss.eu-west-1.aws.gigantic.io
+clusterID: rfjh2
+baseDomain: gorilla.eu-west-1.aws.gigantic.io
 
 project:
   branch: "[[ .Branch ]]"
@@ -88,13 +89,6 @@ configMap:
     alertmanager:
       interval: 120s
       servers:
-      - name: gauss-alert-manager
-        uri: http://alertmanager.monitoring.svc.cluster.local:9093
-        timeout: 20s
-        proxy: true
-        readonly: false
-        headers:
-          X-Auth-Test: karma
     annotations:
       default:
         hidden: true
