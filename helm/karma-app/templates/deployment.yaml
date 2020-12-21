@@ -17,6 +17,8 @@ spec:
       annotations:
         releaseRevision: {{ .Release.Revision | quote }}
     spec:
+      securityContext:
+        runAsUser: 1000
       serviceAccountName: {{ include "resource.default.name" . }}
       containers:
         - name: {{ include "name" . }}
