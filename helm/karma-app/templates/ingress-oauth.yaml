@@ -9,6 +9,14 @@ metadata:
     kubernetes.io/tls-acme: "true"
 spec:
   rules:
+  - host: alertmanager-dashboard.giantswarm.io
+    http:
+      paths:
+      - backend:
+          serviceName: {{ .Values.oauth2.serviceName }}
+          servicePort: {{ .Values.oauth2.port }}
+        path: /oauth2
+        pathType: ImplementationSpecific
   - host: alertmanager-dashboard.{{ .Values.baseDomain }}
     http:
       paths:
