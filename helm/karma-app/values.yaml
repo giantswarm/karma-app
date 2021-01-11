@@ -140,6 +140,38 @@ configMap:
     log:
       config: false
       level: info
+    silenceForm:
+      strip:
+        labels:
+          - area
+          - cancel_if_cluster_status_creating
+          - cancel_if_cluster_status_deleting
+          - cancel_if_cluster_status_updating
+          - cancel_if_cluster_with_notready_nodepools
+          - cancel_if_outside_working_hours
+          - condition
+          - customer
+          - exported_cluster_id
+          - exported_namespace
+          - exported_node
+          - installation
+          - instance
+          - ip
+          - job
+          - job_name
+          - node
+          - phase
+          - pipeline
+          - pod
+          - pod_name
+          - pod_phase
+          - pod_ready
+          - provider
+          - region
+          - severity
+          - status
+          - team
+          - topic
     ui:
       refresh: 30s
       hideFiltersWhenIdle: true
