@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Display only stable installations by default.
+
 ## [0.2.0] - 2021-01-12
 
 ### Added
