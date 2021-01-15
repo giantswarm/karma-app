@@ -98,6 +98,7 @@ configMap:
         - team=firecracker
         - alertname!~Inhibition
         - alertname!~Heartbeat
+        - pipeline=stable
     grid:
       sorting:
         order: label
