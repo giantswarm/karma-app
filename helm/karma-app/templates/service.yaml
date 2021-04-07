@@ -1,3 +1,4 @@
+{{- if .Values.oauth2.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -16,3 +17,5 @@ spec:
     targetPort: {{ .Values.port }}
   selector:
     {{- include "labels.selector" . | nindent 4 }}
+{{- end}}
+
