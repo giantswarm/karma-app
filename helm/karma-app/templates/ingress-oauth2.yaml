@@ -32,3 +32,4 @@ spec:
         - alertmanager-dashboard.{{ .Values.baseDomain }}
       secretName: karma-tls
 {{- end }}
+
