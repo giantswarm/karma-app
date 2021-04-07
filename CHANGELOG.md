@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Fix chart version.
+
 ## [0.3.0] - 2021-04-07
 
 ### Added
