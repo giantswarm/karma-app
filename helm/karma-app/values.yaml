@@ -11,7 +11,7 @@ project:
 image:
   registry: quay.io
   name: giantswarm/karma
-  tag: v0.77
+  tag: v0.81
   pullPolicy: IfNotPresent
 
 oauth2:
@@ -74,8 +74,8 @@ podAnnotations: {}
 
 securityContext: {}
 
-# configuration for liveness probe
-livenessProbe:
+# configuration for readiness probe
+readinessProbe:
   delay: 5
   period: 5
   path: /health
