@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Karma image v0.81.
+- Moved ingress to networking group.
+
+### Removed
+
+- Drop livenessProbe.
+
 ## [0.2.1] - 2021-01-19
 
 ### Added
