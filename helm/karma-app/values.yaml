@@ -16,7 +16,7 @@ project:
 image:
   registry: quay.io
   name: giantswarm/karma
-  tag: v0.81
+  tag: v0.85
   pullPolicy: IfNotPresent
 
 replicaCount: 1
