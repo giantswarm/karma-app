@@ -1,16 +1,20 @@
+{{ if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
+apiVersion: networking.k8s.io/v1
+{{ else }}
 apiVersion: networking.k8s.io/v1beta1
+{{ end }}
 kind: Ingress
 metadata:
   name: {{ include "resource.default.name" . }}
   namespace: {{ include "resource.default.namespace" . }}
   annotations:
-    kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
     nginx.ingress.kubernetes.io/auth-signin: https://$host/oauth2/start?rd=$escaped_request_uri
     nginx.ingress.kubernetes.io/auth-url: https://$host/oauth2/auth
   labels:
     {{- include "labels.common" . | nindent 4 }}
 spec:
+  ingressClassName: nginx
   rules:
   - host: alertmanager-dashboard.giantswarm.io
     http:

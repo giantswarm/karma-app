@@ -1,5 +1,9 @@
 {{- if .Values.oauth2.enabled }}
+{{ if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
+apiVersion: networking.k8s.io/v1
+{{ else }}
 apiVersion: networking.k8s.io/v1beta1
+{{ end }}
 kind: Ingress
 metadata:
   name: {{ include "resource.default.name" . }}-proxy
@@ -9,6 +13,7 @@ metadata:
   annotations:
     kubernetes.io/tls-acme: "true"
 spec:
+  ingressClassName: nginx
   rules:
   - host: alertmanager-dashboard.giantswarm.io
     http:
