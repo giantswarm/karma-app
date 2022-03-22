@@ -81,6 +81,9 @@ readinessProbe:
   period: 5
   path: /health
 
+verticalPodAutoscaler:
+  enabled: true
+
 # configMap dictates if a configmap based configuration for Karma should be used
 # to provide advanced configuration. NOTE, you must use port 8080!
 configMap:
